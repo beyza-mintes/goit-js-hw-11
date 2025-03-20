@@ -51,7 +51,11 @@ form.addEventListener("submit", (event) => {
             } else {
                 // her bir resmin görünmesi için döngü başlatıyoruz
                 data.hits.forEach(image => {
-                    // her resim için kart oluşturma
+                    // resim + info div'i
+                    const galleryContainer = document.createElement("div");
+                    galleryContainer.classList.add(".gallery-cont");
+
+                    // her resim için a etiketi oluşturma
                     const card = document.createElement("a");
                     card.href = image.largeImageURL;
                     card.classList.add("gallery-item");
@@ -60,6 +64,7 @@ form.addEventListener("submit", (event) => {
                     img.src = image.webformatURL;
                     img.alt = image.tags;
                     card.appendChild(img);
+
 
                     // resim bilgilerini içeren div oluşturuyoruz.
                     const info = document.createElement("div");
@@ -72,8 +77,9 @@ form.addEventListener("submit", (event) => {
                     <li class="info-li">Downloads ${image.downloads}</li>
                     </ul>`;
 
-                    card.appendChild(info);
-                    gallery.appendChild(card);
+                    galleryContainer.appendChild(card);
+                    galleryContainer.appendChild(info);
+                    gallery.appendChild(galleryContainer);
                 });
 
                 // SimpleLightbox'ı başlat
